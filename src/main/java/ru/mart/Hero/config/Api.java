@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import org.json.JSONObject;
 import ru.mart.Hero.domain.Hero;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/hero")
 public class Api {
-//    @Autowired
     private final DatabaseService service;
 
     Api(DatabaseService service){
@@ -28,6 +29,15 @@ public class Api {
         hero.setId(100);
         System.out.println(validate(hero));
         return hero;
+    }
+    @PostMapping("/add")
+    String addHero(@RequestBody Hero hero){
+        service.saveHero(hero);
+        return "Герой добавлен в БД";
+    }
+    @GetMapping("/list")
+    List<Hero> getAll(){
+        return service.getAll();
     }
     @RequestMapping("/{id}")
     Hero getHeroById(@PathVariable long id){
