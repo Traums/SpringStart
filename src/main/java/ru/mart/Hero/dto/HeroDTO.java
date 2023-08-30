@@ -1,7 +1,6 @@
-package main.dto;
+package ru.mart.Hero.dto;
 
 import lombok.Data;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Data

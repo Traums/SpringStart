@@ -1,11 +1,11 @@
 package ru.mart.Hero.mapping;
 
 import ru.mart.Hero.domain.Hero;
-import main.dto.HeroDTO;
+import ru.mart.Hero.dto.HeroDTO;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MappingHero {
+public class MapperHero {
     public HeroDTO mapToHeroDTO(Hero entity){
         HeroDTO dto = new HeroDTO();
         dto.setId(entity.getId());

@@ -10,10 +10,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/hero")
-public class Api {
+public class HeroController {
     private final DatabaseService service;
 
-    Api(DatabaseService service){
+    HeroController(DatabaseService service){
         this.service = service;
     }
     @GetMapping()
