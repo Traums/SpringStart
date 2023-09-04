@@ -7,13 +7,13 @@ import org.springframework.kafka.annotation.KafkaListener;
 
 @EnableKafka
 @SpringBootApplication
-public class Producer {
+public class KafkaProducer {
     @KafkaListener(topics="create_hero_req")
     public void msgListener(String msg){
         System.out.println(msg);
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Producer.class, args);
+        SpringApplication.run(KafkaProducer.class, args);
     }
 }
