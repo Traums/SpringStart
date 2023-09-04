@@ -1,10 +1,11 @@
-package ru.mart.Hero.config;
+package ru.mart.Hero.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.ObjectError;
-import ru.mart.Hero.response.Response;
+import ru.mart.Hero.response.BadResponse;
+import ru.mart.Hero.response.GoodResponse;
 import ru.mart.Hero.service.DatabaseService;
 import org.springframework.web.bind.annotation.*;
 import org.json.JSONObject;
@@ -37,17 +38,20 @@ public class HeroController {
     String modifyHero(@Valid @RequestBody Hero hero){
 
         if (validate(hero)){
-            return new Response(true,errorMap,hero).getJson().toString();
-        }else{
             hero.setId(100);
-            JSONObject json = new Response(false,errorMap,hero).getJson();
-            return json.toString();
+            return new GoodResponse(hero).getJson().toString();
+        }else{
+            return new BadResponse(errorMap).getJson().toString();
         }
     }
     @PostMapping("/add")
     String addHero(@RequestBody Hero hero){
-        service.saveHero(hero);
-        return "Герой добавлен в БД";
+        if (validate(hero)){
+            service.saveHero(hero);
+            return new GoodResponse(hero).getJson().toString();
+        }else{
+            return new BadResponse(errorMap).getJson().toString();
+        }
     }
     @GetMapping("/list")
     List<Hero> getAll(){

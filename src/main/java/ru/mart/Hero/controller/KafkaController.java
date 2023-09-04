@@ -1,4 +1,4 @@
-package ru.mart.Hero.config;
+package ru.mart.Hero.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;

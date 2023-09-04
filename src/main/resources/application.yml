@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/xxi
+    username: admin
+    password: 12345
+  kafka:
+    consumer:
+      group-id: app.1

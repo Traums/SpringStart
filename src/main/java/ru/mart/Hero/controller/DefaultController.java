@@ -1,4 +1,4 @@
-package ru.mart.Hero.config;
+package ru.mart.Hero.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
