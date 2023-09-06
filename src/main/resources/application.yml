@@ -4,5 +4,21 @@ spring:
     username: admin
     password: 12345
   kafka:
+    bootstrap-servers: ${BOOTSTRAPSERVER:localhost:9092}
+    group-id: ${GROUP_ID:demo}
     consumer:
-      group-id: app.1
+      topic.get.hero: ${TOPIC_CONSUMER_HERO:create_hero_req}
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      topic.send.hero: ${TOPIC_CONSUMER_HERO:create_hero_resp}
+      key-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-serializer: org.apache.kafka.common.serialization.StringDeserializer
+adapter:
+  kafka:
+    enabled: true
+    group.id: ${GROUP_ID:demo}
+    group.unique.prefix: ${UNIQUE_PREFIX:up}
+    bootstrap-servers: ${BOOTSTRAPSERVER:localhost:9092}
+    requestTimeout: ${KAFKA_REQUEST_TIMEOUT:650000}
+    maxPollInterval: ${KAFKA_MAX_POLL_INTERVAL:650000}
