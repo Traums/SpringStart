@@ -6,6 +6,7 @@ spring:
   kafka:
     bootstrap-servers: ${BOOTSTRAPSERVER:localhost:9092}
     group-id: ${GROUP_ID:demo}
+    group.unique.prefix: ${UNIQUE_PREFIX:up}
     consumer:
       topic.get.hero: ${TOPIC_CONSUMER_HERO:create_hero_req}
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer

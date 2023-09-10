@@ -14,6 +14,6 @@ public class HeroDTO {
     @NotNull
     private String name;
     @NotNull
-    private int level;
+    private Integer level;
     private String ultimate;
 }
