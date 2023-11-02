@@ -1,12 +1,10 @@
 package ru.mart.Hero.kafka;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
-import ru.mart.Hero.domain.Hero;
 import ru.mart.Hero.dto.HeroDTO;
 import ru.mart.Hero.mapping.MapperHero;
 import ru.mart.Hero.service.DatabaseService;
@@ -32,7 +30,16 @@ public class KafkaConsumer {
         log.info("Сообщение получено");
         heroDto.setId(heroDto.getId() + 2);//Изменённый id
         service.saveHero(mapperHero.mapToHeroEntity(heroDto));
-//        kafkaTemplate.send(test, String.valueOf(dto));
         producer.sendCreateHeroSuccess(heroDto);
     }
 }
+
+
+
+
+
+
+
+
+
+
