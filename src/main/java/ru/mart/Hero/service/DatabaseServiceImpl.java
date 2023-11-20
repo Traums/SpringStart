@@ -10,7 +10,7 @@ import ru.mart.Hero.repos.HeroRepository;
 import java.util.List;
 @Service
 @Transactional
-public class DatabaseServiceImpl implements ru.mart.Hero.service.DatabaseService {
+public class DatabaseServiceImpl implements DatabaseService {
     private final HeroRepository heroRepository;
     @Autowired
     public DatabaseServiceImpl(HeroRepository heroRepository){

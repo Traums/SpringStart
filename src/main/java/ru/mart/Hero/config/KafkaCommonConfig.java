@@ -22,6 +22,7 @@ import java.util.Map;
 @Data
 @RequiredArgsConstructor
 public class KafkaCommonConfig {
+    //4.4.1 Как создать неизменяемый объект в Java? Для чего?
     @Value("${spring.kafka.bootstrap-servers}")
     private String servers;
 
