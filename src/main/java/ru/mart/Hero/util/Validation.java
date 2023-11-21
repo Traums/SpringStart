@@ -22,7 +22,7 @@ public  class Validation implements Validator{
     }
 
     @Override
-    public void validate(@NotNull Object target, Errors errors) {
+    public void validate(@NotNull Object target, @NotNull Errors errors) {
         Hero hero = (Hero) target;
         if (hero.getName().length() > 14)
             errors.rejectValue("name","01","Имя слишком длинное");

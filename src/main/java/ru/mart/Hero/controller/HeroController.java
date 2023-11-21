@@ -4,6 +4,8 @@ package ru.mart.Hero.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
+import ru.mart.Hero.dto.HeroDTO;
 import ru.mart.Hero.response.BadResponse;
 import ru.mart.Hero.response.GoodResponse;
 import ru.mart.Hero.service.DatabaseService;
@@ -14,7 +16,6 @@ import ru.mart.Hero.util.Validation;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/hero")
@@ -36,7 +37,6 @@ public class HeroController {
     }
     @PostMapping()
     String modifyHero(@Valid @RequestBody Hero hero){
-
         if (validate(hero)){
             hero.setId(100);
             return new GoodResponse(hero).getJson().toString();
@@ -45,13 +45,14 @@ public class HeroController {
         }
     }
     @PostMapping("/add")
-    String addHero(@RequestBody Hero hero){
+    String addHero(@Validated @RequestBody Hero hero){
         if (validate(hero)){
             service.saveHero(hero);
             return new GoodResponse(hero).getJson().toString();
         }else{
             return new BadResponse(errorMap).getJson().toString();
         }
+//        return "Тестовый прогон";
     }
     @GetMapping("/list")
     List<Hero> getAll(){
