@@ -1,6 +1,7 @@
 package ru.mart.Hero.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.ObjectError;
@@ -16,9 +17,10 @@ import ru.mart.Hero.util.Validation;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-
+@Slf4j
 @RestController
 @RequestMapping("/api/hero")
+@Validated
 public class HeroController {
     List<ObjectError> errorMap = new ArrayList<>();
     private final DatabaseService service;
@@ -45,14 +47,15 @@ public class HeroController {
         }
     }
     @PostMapping("/add")
-    String addHero(@Validated @RequestBody Hero hero){
-        if (validate(hero)){
-            service.saveHero(hero);
-            return new GoodResponse(hero).getJson().toString();
-        }else{
-            return new BadResponse(errorMap).getJson().toString();
-        }
-//        return "Тестовый прогон";
+    String addHero(@Valid @RequestBody HeroDTO hero){
+//        if (validate(hero)){
+//            service.saveHero(hero);
+//            return new GoodResponse(hero).getJson().toString();
+//        }else{
+//            return new BadResponse(errorMap).getJson().toString();
+//        }
+        log.warn(hero.getName());
+        return "Тестовый прогон";
     }
     @GetMapping("/list")
     List<Hero> getAll(){
