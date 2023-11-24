@@ -2,7 +2,6 @@ package ru.mart.Practice;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.mart.Practice.Thread.Message;
-import ru.mart.Practice.Thread.MyThread;
 import ru.mart.Practice.Thread.Notifier;
 import ru.mart.Practice.Thread.Waiter;
 import ru.mart.Review.ClientStorage.ClientsStorage;
@@ -44,7 +43,7 @@ public class PracticeApp2 {
     }
 
     private void demoWriteArray() {
-        CopyOnWriteArrayList list = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Object> list = new CopyOnWriteArrayList<>();
 
         list.add("A");
         list.add("B");
@@ -70,7 +69,7 @@ public class PracticeApp2 {
         try {
             Thread.sleep(1500);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.warn(e.getMessage());
         }
     }
 
