@@ -1,4 +1,4 @@
-package ru.mart.Hero.service;
+package ru.mart.Hero.DatabaseService;
 import ru.mart.Hero.domain.Hero;
 import java.util.List;
 

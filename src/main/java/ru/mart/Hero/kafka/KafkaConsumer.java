@@ -7,7 +7,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 import ru.mart.Hero.dto.HeroDTO;
 import ru.mart.Hero.mapping.MapperHero;
-import ru.mart.Hero.service.DatabaseService;
+import ru.mart.Hero.DatabaseService.DatabaseService;
 @Slf4j
 @Component
 public class KafkaConsumer {

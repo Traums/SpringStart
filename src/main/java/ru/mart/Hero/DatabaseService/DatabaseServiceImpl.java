@@ -1,7 +1,9 @@
-package ru.mart.Hero.service;
+package ru.mart.Hero.DatabaseService;
 
 
+import jakarta.persistence.LockModeType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import ru.mart.Hero.domain.Hero;
@@ -23,6 +25,7 @@ public class DatabaseServiceImpl implements DatabaseService {
     }
 
     @Override
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
     public Hero getHeroById(Long id) {
         return heroRepository.findById(id).orElse(new Hero());
     }

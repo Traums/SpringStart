@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MapperHero {
-    public HeroDTO mapToHeroDTO(Hero entity){
+    public static HeroDTO mapToHeroDTO(Hero entity){
         HeroDTO dto = new HeroDTO();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
@@ -14,7 +14,7 @@ public class MapperHero {
         dto.setUltimate(entity.getUltimate());
         return dto;
     }
-    public Hero mapToHeroEntity(HeroDTO dto){
+    public static Hero mapToHeroEntity(HeroDTO dto){
         Hero entity = new Hero();
         entity.setId(dto.getId());
         entity.setName(dto.getName());

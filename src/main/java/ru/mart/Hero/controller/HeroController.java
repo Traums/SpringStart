@@ -7,14 +7,15 @@ import org.springframework.validation.DataBinder;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import ru.mart.Hero.dto.HeroDTO;
+import ru.mart.Hero.mapping.MapperHero;
 import ru.mart.Hero.response.BadResponse;
 import ru.mart.Hero.response.GoodResponse;
-import ru.mart.Hero.service.DatabaseService;
+import ru.mart.Hero.DatabaseService.DatabaseService;
 import org.springframework.web.bind.annotation.*;
 import org.json.JSONObject;
 import ru.mart.Hero.domain.Hero;
 import ru.mart.Hero.util.Validation;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 @Slf4j
@@ -47,15 +48,14 @@ public class HeroController {
         }
     }
     @PostMapping("/add")
-    String addHero(@Valid @RequestBody HeroDTO hero){
-//        if (validate(hero)){
-//            service.saveHero(hero);
-//            return new GoodResponse(hero).getJson().toString();
-//        }else{
-//            return new BadResponse(errorMap).getJson().toString();
-//        }
-        log.warn(hero.getName());
-        return "Тестовый прогон";
+    String addHero(@Valid @RequestBody HeroDTO heroDTO){
+        Hero hero = MapperHero.mapToHeroEntity(heroDTO);
+        if (validate(hero)){
+            service.saveHero(hero);
+            return new GoodResponse(hero).getJson().toString();
+        }else{
+            return new BadResponse(errorMap).getJson().toString();
+        }
     }
     @GetMapping("/list")
     List<Hero> getAll(){
