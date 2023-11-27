@@ -27,7 +27,7 @@ public class KafkaConsumer {
                    groupId = "${spring.kafka.group-id}",
                    containerFactory = "getCreateHeroContainerFactory")
     public void consume(HeroDTO heroDto){
-        log.info("Сообщение получено");
+        log.info("Сообщение получено и обработано");
         heroDto.setId(heroDto.getId() + 2);//Изменённый id
         service.saveHero(mapperHero.mapToHeroEntity(heroDto));
         producer.sendCreateHeroSuccess(heroDto);

@@ -11,10 +11,10 @@ import ru.mart.Hero.dto.HeroDTO;
 @RequestMapping("kafka")
 public class KafkaController {
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<Object, HeroDTO> kafkaTemplate;
     @PostMapping
-    public String sendKafkaReq(String msgId, String msg){
-        kafkaTemplate.send("create_hero_req",msgId, msg);
+    public String sendKafkaReq(@RequestBody HeroDTO heroDTO){
+        kafkaTemplate.send("create_hero_req", heroDTO);
         return "Запрос записан";
     }
 }

@@ -1,6 +1,10 @@
 package ru.mart.Hero.controller;
 
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Info;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.DataBinder;
@@ -22,6 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/hero")
 @Validated
+@Api("Api для работы с сущностью Hero")
 public class HeroController {
     List<ObjectError> errorMap = new ArrayList<>();
     private final DatabaseService service;
@@ -31,6 +36,7 @@ public class HeroController {
         this.service = service;
     }
     @GetMapping()
+    @Operation(summary = "Тестовый запрос")
     String getHero(){
         return new JSONObject().put("hero",new JSONObject()
                                             .put("id",1)
@@ -39,6 +45,7 @@ public class HeroController {
                                             .toString();
     }
     @PostMapping()
+    @Operation(summary = "Апдейт Hero")
     String modifyHero(@Valid @RequestBody Hero hero){
         if (validate(hero)){
             hero.setId(100);
@@ -48,6 +55,7 @@ public class HeroController {
         }
     }
     @PostMapping("/add")
+    @Operation(summary = "Добавление сущности в БД")
     String addHero(@Valid @RequestBody HeroDTO heroDTO){
         Hero hero = MapperHero.mapToHeroEntity(heroDTO);
         if (validate(hero)){
@@ -58,10 +66,12 @@ public class HeroController {
         }
     }
     @GetMapping("/list")
+    @Operation(summary = "Получение всех записей из БД")
     List<Hero> getAll(){
         return service.getAll();
     }
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
+    @Operation(summary = "Получение записи из БД по id")
     Hero getHeroById(@PathVariable long id){
         return service.getHeroById(id);
     }
