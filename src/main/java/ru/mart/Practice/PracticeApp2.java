@@ -1,9 +1,9 @@
 package ru.mart.Practice;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.mart.Practice.Thread.Message;
-import ru.mart.Practice.Thread.Notifier;
-import ru.mart.Practice.Thread.Waiter;
+import ru.mart.Practice.Thread.Notifier.Message;
+import ru.mart.Practice.Thread.Notifier.Notifier;
+import ru.mart.Practice.Thread.Notifier.Waiter;
 import ru.mart.Review.ClientStorage.ClientsStorage;
 import ru.mart.Review.ClientStorage.Extended.ClientsStorageExtended;
 import ru.mart.Review.ClientStorage.StorageFactory;
@@ -15,9 +15,9 @@ import java.util.concurrent.locks.LockSupport;
 public class PracticeApp2 {
     public void run(){
         //demoHeritation();
-        //demoThreads();
+        demoThreads();
         //demoWriteArray();
-        demoRunnableAndCallable();
+        //demoRunnableAndCallable();
     }
 
     private void demoRunnableAndCallable() {
@@ -56,7 +56,7 @@ public class PracticeApp2 {
     }
 
     private void demoThreads() {
-        Message msg = new Message("обрабатывай меня");
+        Message msg = new Message("Обработка");
         Waiter waiter = new Waiter(msg);
         Notifier notifier = new Notifier(msg);
 

@@ -1,4 +1,4 @@
-package ru.mart.Practice.Thread;
+package ru.mart.Practice.Thread.Notifier;
 
 public class Waiter implements Runnable {
     private Message msg;

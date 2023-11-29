@@ -9,12 +9,17 @@ public class Phone{
         this.name=name;
         this.price=price;
     }
-
     public String getName() {
         return name;
     }
 
     public int getPrice() {
         return price;
+    }
+    public void call(){
+        System.out.println("Call...");
+    }
+    public void charge(){
+        System.out.println("Charging...");
     }
 }

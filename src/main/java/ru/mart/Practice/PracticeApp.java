@@ -46,7 +46,6 @@ public class PracticeApp {
     void demoLimitStream(){
         ClientsStorage clientsStorage = StorageFactory.getInstance().createObject(10);
         //clientsStorage.clients.stream().limit(2).forEach(System.out::println);
-
         clientsStorage.clients.stream().sorted(new ClientComparator()).forEach(System.out::println);
         System.out.println("Результат\n");
         //clientsStorage.clients.stream().filter(client -> client.getGold() > 0).sorted(new ClientComparator()).takeWhile(client -> client.getGold() < 100).forEach(System.out::println);

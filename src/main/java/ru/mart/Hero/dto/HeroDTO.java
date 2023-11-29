@@ -13,9 +13,9 @@ import jakarta.validation.constraints.NotNull;
 @Component
 public class HeroDTO {
     @JsonProperty("ID")
-    @NotNull(message = "обязательное поле")
+    @NotNull
     private long id;
-    @NotBlank(message = "Поле должно быть заполнено")
+    @NotBlank
     private String name;
     @Positive
     private Integer level;
