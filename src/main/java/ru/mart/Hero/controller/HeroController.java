@@ -2,16 +2,17 @@ package ru.mart.Hero.controller;
 
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Info;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.persistence.LockModeType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import ru.mart.Hero.dto.HeroDTO;
 import ru.mart.Hero.mapping.MapperHero;
+import ru.mart.Hero.repos.HeroRepository;
 import ru.mart.Hero.response.BadResponse;
 import ru.mart.Hero.response.GoodResponse;
 import ru.mart.Hero.DatabaseService.DatabaseService;
@@ -20,6 +21,7 @@ import org.json.JSONObject;
 import ru.mart.Hero.domain.Hero;
 import ru.mart.Hero.util.Validation;
 import jakarta.validation.Valid;
+
 import java.util.ArrayList;
 import java.util.List;
 @Slf4j
@@ -30,6 +32,8 @@ import java.util.List;
 public class HeroController {
     List<ObjectError> errorMap = new ArrayList<>();
     private final DatabaseService service;
+    @Autowired
+    HeroRepository heroRepository;
     @Autowired
     Validation validation;
     HeroController(DatabaseService service){
@@ -45,6 +49,7 @@ public class HeroController {
                                             .toString();
     }
     @PostMapping()
+    @Lock(LockModeType.WRITE)
     @Operation(summary = "Апдейт Hero")
     String modifyHero(@Valid @RequestBody Hero hero){
         if (validate(hero)){
@@ -71,6 +76,7 @@ public class HeroController {
         return service.getAll();
     }
     @GetMapping("/{id}")
+    @Lock(LockModeType.READ)
     @Operation(summary = "Получение записи из БД по id")
     Hero getHeroById(@PathVariable long id){
         return service.getHeroById(id);
@@ -87,5 +93,13 @@ public class HeroController {
         if (errorMap.isEmpty())
             result = true;
         return result;
+    }
+    @GetMapping("/find/{name}")
+    Hero getIdByName(@PathVariable String name){
+        return heroRepository.findIdByFirstname(name);
+    }
+    @GetMapping("/getTotal/{model}")
+    int getTotalHeroes(@PathVariable String model){
+        return heroRepository.getTotalHeroes(model);
     }
 }
