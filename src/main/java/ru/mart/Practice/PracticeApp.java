@@ -10,10 +10,10 @@ import java.util.*;
 
 public class PracticeApp {
     void run(){
-        //demoCompare();// 4.5.2 Отличие Comparator и Comparable. Какой контракт Comparator должен соблюдать?
+        demoCompare();// 4.5.2 Отличие Comparator и Comparable. Какой контракт Comparator должен соблюдать?
         //demoMatch();
         //demoPrimitiveStream();//4.6.11 Stream. Преобразование объектов
-        demoLimitStream();// 4.6.13 Stream. Ограничение выборки
+        //demoLimitStream();// 4.6.13 Stream. Ограничение выборки
 //        demoHashSet();//4.7.2 В чем отличия TreeSet от HashSet?
 //        demoTreeSet();//4.7.2 В чем отличия TreeSet от HashSet?
         //demoStringSub();4.9.2 Как работает метод substring() класса String. Будет ли утечка памяти?

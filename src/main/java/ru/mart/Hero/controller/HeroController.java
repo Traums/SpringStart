@@ -7,6 +7,8 @@ import jakarta.persistence.LockModeType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Lock;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
@@ -22,6 +24,7 @@ import ru.mart.Hero.domain.Hero;
 import ru.mart.Hero.util.Validation;
 import jakarta.validation.Valid;
 
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 @Slf4j
@@ -81,6 +84,12 @@ public class HeroController {
     Hero getHeroById(@PathVariable long id){
         return service.getHeroById(id);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity handleException(Exception ex) {
+        return new ResponseEntity<>("Возникла необработнная ошибка: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     private boolean validate(Hero hero){
         boolean result = false;
 
