@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LiskovMain {
+    //2.4 L - Liskov Substitution Principle (LSP. Часть 2. О наследовании)
+    //2.5 D - Dependency Inversion Principle (Критический взгляд на DIP)
     public static void main(String[] args){
         //Неправильный вариант
         incorrectExample();

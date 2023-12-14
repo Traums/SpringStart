@@ -17,7 +17,7 @@ public class PracticeApp {
 //        demoHashSet();//4.7.2 В чем отличия TreeSet от HashSet?
 //        demoTreeSet();//4.7.2 В чем отличия TreeSet от HashSet?
         //demoStringSub();4.9.2 Как работает метод substring() класса String. Будет ли утечка памяти?
-        //demoGenerics();//4.10.1 что такое Generics и зачем они появились в Java? Рассказать про стирание типов в java
+        //demoGenerics();
     }
 
     private static void demoCompare() {

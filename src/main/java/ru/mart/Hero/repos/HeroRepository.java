@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 public interface HeroRepository extends JpaRepository<Hero,Long> {
-
+    //4.11.7 Рассказать про использование аннотаций @Query @Procedure @Lock @EnableJpaRepositories
     @Query("FROM Hero h where h.name = ?1 order by h.id LIMIT 1")
     Hero findIdByFirstname(String firstname);
 

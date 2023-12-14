@@ -12,6 +12,7 @@ import jakarta.validation.constraints.NotNull;
 @Data
 @Component
 public class HeroDTO {
+    //4.11.5 Какие отличия между аyнотациями @NotEmpty, @NotBlank и @NotNull? К каким типам данных они применяются?
     @JsonProperty("ID")
     @NotNull
     private long id;

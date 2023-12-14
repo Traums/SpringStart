@@ -68,13 +68,13 @@ public class ReviewApp {
         //demoFunctionalInterfaceException(10);//4.3.3 Работа с исключениями при использовании лямбда-выражений
         //demoFunctionInterface();//4.5.1 Что такое функциональные интерфейсы? В каких случаях вы можете подставить лямбда выражение вместо интерфейса?
         //demoAllFunctionalInterface();//4.5.3 Расскажите про встроенные функциональные интерфейсы Predicate, Consumer, Function, Supplier, UnaryOperator, BinaryOperator
-        //demoLambda(); //4.5.4 Что такое лямбда выражение? Зачем они нужны? Область видимости в лямбда выражениях? Что такое ссылка на метод?
+        //demoLambda();
         //demoCapture(); //4.5.5 Non/capture lambda чем отличаются?
         //demoNonCapture(); //4.5.5 Non/capture lambda чем отличаются?
         //readFileAsStream(); //4.6.2 Stream. Способы создания потока строк и потока из файла
         //demoCollectors();// 4.6.5 Stream. Конверсия  Collectors в список, множество, карту, коллекцию
-        //demoStreamCollect();// 4.6.6 Stream. Операторы collect()
-        // ^  4.6.7 Stream. Операторы reduce()
+        demoStreamCollect();// 4.6.6 Stream. Операторы collect()
+        //demoReduce();  4.6.7 Stream. Операторы reduce()
         // | 4.6.8 Stream. Операторы поиска
         // | 4.6.9 Stream. Оператор sorted()
         // 4.6.12 Рассказать про StreamApi примитивных типов.
@@ -149,7 +149,9 @@ public class ReviewApp {
     void demoNonCapture(){
         int[] numbers = {1,2,3,4,5};
         //Просто передаем numbers
-        Arrays.stream(numbers).forEach(System.out::println);
+        Arrays.stream(numbers).forEach((number)->{
+            System.out.println(number);
+        });
     }
     void readFileAsStream() {
         //1 Пример с помощью регулярок и splitAsStream
@@ -236,8 +238,11 @@ public class ReviewApp {
         List<Client> activeClients = clientsStorage.clients.stream().filter(client -> !client.isActive()).collect(Collectors.toList());
         clientsStorage.clients.forEach(System.out::println);
         //reduce
-        Optional<Client> clientMaxGold = clientsStorage.clients.stream().reduce(((client1, client2) -> client1.getGold() > client2.getGold() ? client1 : client2));
-        System.out.println("Max:" + clientMaxGold);
+        //4.16.6 Рассказать про класс Optional? Как создавать? В каких случаях использовать? Какие приемущества даст его использование?
+        Optional<Client> clientMaxGoldOptional = clientsStorage.clients.stream().reduce(((client1, client2) -> client1.getGold() > client2.getGold() ? client1 : client2));
+        if(clientMaxGoldOptional.isPresent()){
+            System.out.println("Max:" + clientMaxGoldOptional);
+        }
         //sorted
         System.out.println("Сортировка:");
         Collection<Client> sortedClientsCollection = clientsStorage.clients.stream().sorted(Comparator.comparing(Client::getGold)).collect(Collectors.toCollection(TreeSet::new));
@@ -250,5 +255,30 @@ public class ReviewApp {
         assert nameLengthGrater5 != null;
         System.out.println("Любой клиент у которого имя длинее 5 символов:" + nameLengthGrater5.getName());
         //List<String> names = clientsStorage.clients.stream().map(Client::getName).toList();
+    }
+    void demoReduce(){
+        //        ClientsStorage storage = StorageFactory.getInstance().createObject();
+//
+//        Integer result = storage.clients.stream().reduce(0,(goldSum,client)->goldSum + client.getGold(),Integer::sum);
+//        List<Integer> allOrders = storage.clients.stream().map(Client::getGold).collect(Collectors.toList());
+//        System.out.println(allOrders);
+//        System.out.println(allOrders.stream().reduce(0,Integer::sum));
+//        storage.clients.forEach(System.out::println);
+//        System.out.println(result);
+
+
+//        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+//        int initial = 1;
+//        int sum = numbers.stream().reduce(initial,(sumVal,val)->sumVal * val, Integer::sum);
+//        System.out.println(sum);
+//        System.out.println(numbers.stream().reduce(0,Integer::sum));
+
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+
+        // 1*10 + 2*10 + 3*10
+        Integer sum = numbers.stream().parallel()
+                .reduce(10, (identity, val) -> identity * val, Integer::sum);
+
+        System.out.println(sum); //output 60
     }
 }

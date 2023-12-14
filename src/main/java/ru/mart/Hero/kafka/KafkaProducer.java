@@ -29,6 +29,7 @@ public class KafkaProducer {
     public void sendCreateHeroError(final AdapterResponse<HeroDTO> message){
         sendMessage(createHero,message);
     }
+    //4.10.1 что такое Generics и зачем они появились в Java? Рассказать про стирание типов в java
     public <T> void sendMessage(final String topic,final T message){
         producerConfig.<T>getGenericProducerTemplate().send(topic,message);
     }

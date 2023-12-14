@@ -22,7 +22,7 @@ class User
         List<User> users = new ArrayList<>();
         users.add(new User("John", "admin"));
         users.add(new User("Peter", "member"));
-
+        //4.5.1 Что такое функциональные интерфейсы? В каких случаях вы можете подставить лямбда выражение вместо интерфейса?
         Predicate<User> predicate = (User u) -> u.getRole().equals("admin");
         List<User> admins = process(users, predicate);
         System.out.println(admins);
@@ -34,6 +34,7 @@ class User
         List<User> result = new ArrayList<User>();
         for (User user: users)
             if (predicate.test(user))
+
                 result.add(user);
         return result;
     }

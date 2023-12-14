@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 public class ScheduledTask {
     @Autowired
     public BusinessService businessService;
+    //4.11.6 @Scheduled  расказать про использование и параметры
     @Scheduled(fixedRate = 150)
     public void doTask(){
         businessService.someMethod();

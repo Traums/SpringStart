@@ -32,6 +32,7 @@ import java.util.List;
 @RequestMapping("/api/hero")
 @Validated
 @Api("Api для работы с сущностью Hero")
+//4.11.10 Расскажите о использовании аннотаций и их параметрах @RequestMapping, @RequestBody, @PathVariable, @RequestParam, @ExceptionHandler
 public class HeroController {
     List<ObjectError> errorMap = new ArrayList<>();
     private final DatabaseService service;
@@ -52,6 +53,7 @@ public class HeroController {
                                             .toString();
     }
     @PostMapping()
+    //4.11.7 Рассказать про использование аннотаций @Query @Procedure @Lock @EnableJpaRepositories
     @Lock(LockModeType.WRITE)
     @Operation(summary = "Апдейт Hero")
     String modifyHero(@Valid @RequestBody Hero hero){
@@ -110,5 +112,9 @@ public class HeroController {
     @GetMapping("/getTotal/{model}")
     int getTotalHeroes(@PathVariable String model){
         return heroRepository.getTotalHeroes(model);
+    }
+    @GetMapping("/param")
+    public String getUserInfo(@RequestParam String id, @RequestParam String name) {
+        return "User info: ID = " + id + ", Name = " + name;
     }
 }

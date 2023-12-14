@@ -17,6 +17,7 @@ public class ClientsStorage  implements Iterable<Client> {
     @Setter
     @Getter
     private int storageSize;
+    @InjectProperty("whiskey")
     public String usage = "";
     public ClientsStorage(){
     }
