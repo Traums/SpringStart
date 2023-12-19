@@ -10,12 +10,12 @@ import java.util.*;
 
 public class PracticeApp {
     void run(){
-        demoCompare();// 4.5.2 Отличие Comparator и Comparable. Какой контракт Comparator должен соблюдать?
+        //demoCompare();// 4.5.2 Отличие Comparator и Comparable. Какой контракт Comparator должен соблюдать?
         //demoMatch();
         //demoPrimitiveStream();//4.6.11 Stream. Преобразование объектов
         //demoLimitStream();// 4.6.13 Stream. Ограничение выборки
-//        demoHashSet();//4.7.2 В чем отличия TreeSet от HashSet?
-//        demoTreeSet();//4.7.2 В чем отличия TreeSet от HashSet?
+        //demoHashSet();//4.7.2 В чем отличия TreeSet от HashSet?
+        //demoTreeSet();//4.7.2 В чем отличия TreeSet от HashSet?
         //demoStringSub();4.9.2 Как работает метод substring() класса String. Будет ли утечка памяти?
         //demoGenerics();
     }
@@ -55,16 +55,16 @@ public class PracticeApp {
         HashSet<Double> hashSet = new HashSet<>();
         // Пример использования HashSet
         System.out.println("HashSet");
-        process(hashSet);
+        demoSetCompare(hashSet);
     }
     void demoTreeSet(){
         // Пример использования TreeSet
         TreeSet<Double> treeSet = new TreeSet<>();
         System.out.println("TreeSet");
-        process(treeSet);
+        demoSetCompare(treeSet);
     }
 
-    private static void process(Set<Double> set) {
+    private static void demoSetCompare(Set<Double> set) {
         long startTime = System.currentTimeMillis();
         fillSet(set);
         long endTimeFill = System.currentTimeMillis() - startTime;

@@ -74,7 +74,7 @@ public class ReviewApp {
         //readFileAsStream(); //4.6.2 Stream. Способы создания потока строк и потока из файла
         //demoCollectors();// 4.6.5 Stream. Конверсия  Collectors в список, множество, карту, коллекцию
         demoStreamCollect();// 4.6.6 Stream. Операторы collect()
-        //demoReduce();  4.6.7 Stream. Операторы reduce()
+        demoReduce(); // 4.6.7 Stream. Операторы reduce()
         // | 4.6.8 Stream. Операторы поиска
         // | 4.6.9 Stream. Оператор sorted()
         // 4.6.12 Рассказать про StreamApi примитивных типов.

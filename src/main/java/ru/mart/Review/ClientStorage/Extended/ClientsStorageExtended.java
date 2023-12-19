@@ -14,4 +14,5 @@ public class ClientsStorageExtended extends ClientsStorage {
     public Client getClient(int ind2) {
         return super.getClient(ind2);
     }
+
 }

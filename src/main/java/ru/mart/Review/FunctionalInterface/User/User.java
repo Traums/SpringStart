@@ -23,6 +23,13 @@ class User
         users.add(new User("John", "admin"));
         users.add(new User("Peter", "member"));
         //4.5.1 Что такое функциональные интерфейсы? В каких случаях вы можете подставить лямбда выражение вместо интерфейса?
+        //Длинная запись
+//        Predicate<User> predicate = new Predicate<User>() {
+//            @Override
+//            public boolean test(User u) {
+//                return u.getRole().equals("admin");
+//            }
+//        };
         Predicate<User> predicate = (User u) -> u.getRole().equals("admin");
         List<User> admins = process(users, predicate);
         System.out.println(admins);

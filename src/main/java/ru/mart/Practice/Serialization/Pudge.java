@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Pudge extends Hero implements Serializable {
     @Serial
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -4862926644813433707L;
     public Pudge(int id, String name , int level, String ultimate) {
         super(id,name,level,ultimate);
     }

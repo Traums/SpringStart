@@ -1,5 +1,6 @@
 package ru.mart.Hero.domain;
 
+import jakarta.persistence.Version;
 import lombok.*;
 
 import jakarta.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "heroes")
 public class Hero {
+    @Version
+    private long versional;
     @Id
     private long id;
     @NotBlank(message = "Имя должно быть заполнено")
