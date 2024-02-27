@@ -7,13 +7,14 @@ import ru.mart.Review.ClientStorage.ClientsStorage;
 import ru.mart.Review.ClientStorage.StorageFactory;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class PracticeApp {
     void run(){
         //demoCompare();// 4.5.2 Отличие Comparator и Comparable. Какой контракт Comparator должен соблюдать?
         //demoMatch();
-        //demoPrimitiveStream();//4.6.11 Stream. Преобразование объектов
-        //demoLimitStream();// 4.6.13 Stream. Ограничение выборки
+        demoPrimitiveStream();//4.6.11 Stream. Преобразование объектов
+        demoLimitStream();// 4.6.13 Stream. Ограничение выборки
         //demoHashSet();//4.7.2 В чем отличия TreeSet от HashSet?
         //demoTreeSet();//4.7.2 В чем отличия TreeSet от HashSet?
         //demoStringSub();4.9.2 Как работает метод substring() класса String. Будет ли утечка памяти?
@@ -33,6 +34,7 @@ public class PracticeApp {
     void demoMatch(){
         ClientsStorage clientsStorage = StorageFactory.getInstance().createObject(10);
         Boolean anyActive  = clientsStorage.clients.stream().anyMatch(Client::isActive);
+
         System.out.println(anyActive);
 
         clientsStorage.clients.stream().forEach(System.out::println);
@@ -45,11 +47,13 @@ public class PracticeApp {
     }
     void demoLimitStream(){
         ClientsStorage clientsStorage = StorageFactory.getInstance().createObject(10);
-        //clientsStorage.clients.stream().limit(2).forEach(System.out::println);
+        clientsStorage.clients.stream().limit(2).forEach(System.out::println);
         clientsStorage.clients.stream().sorted(new ClientComparator()).forEach(System.out::println);
         System.out.println("Результат\n");
-        //clientsStorage.clients.stream().filter(client -> client.getGold() > 0).sorted(new ClientComparator()).takeWhile(client -> client.getGold() < 100).forEach(System.out::println);
-        //clientsStorage.clients.stream().filter(client -> client.getGold() > 0).sorted(new ClientComparator()).dropWhile(client -> client.getGold() < 50).forEach(System.out::println);
+        clientsStorage.clients.stream().filter(client -> client.getGold() > 0).sorted(new ClientComparator())
+                .takeWhile(client -> client.getGold() < 100).forEach(System.out::println);
+        clientsStorage.clients.stream().filter(client -> client.getGold() > 0).sorted(new ClientComparator())
+                .dropWhile(client -> client.getGold() < 50).forEach(System.out::println);
     }
     void demoHashSet(){
         HashSet<Double> hashSet = new HashSet<>();
@@ -113,5 +117,21 @@ public class PracticeApp {
         Box stringBox = new Box<>("string");
         System.out.println("Integer value: " + integerBox.getValue()); // Вывод содержимого integerBox
         System.out.println("String value: " + stringBox.getValue()); // Вывод содержимого stringBox
+    }
+
+    public static void main(String[] args) {
+        Stream.of("d2","a2","b1","c")
+                .map(s ->{
+                    System.out.println(s.toUpperCase());
+                    return s;})
+                .anyMatch(s -> {
+                    System.out.println(s);
+                    return s.startsWith("A");
+                });
+        HashSet<Character> chars = new HashSet<>();
+        chars.add('c');
+        if(chars.contains('c')){
+            System.out.println("Готово");
+        }
     }
 }

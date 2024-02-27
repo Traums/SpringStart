@@ -5,7 +5,7 @@ import jakarta.persistence.LockModeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import ru.mart.Hero.domain.Hero;
 import ru.mart.Hero.repos.HeroRepository;
 

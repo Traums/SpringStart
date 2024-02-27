@@ -8,11 +8,9 @@ import ru.mart.Review.ClientStorage.ClientsStorage;
 @Getter
 public class ClientsStorageExtended extends ClientsStorage {
     private String extendedField = "Test";
-    public String annotationValue;
-
+    //public String annotationValue;
     @Override
     public Client getClient(int ind2) {
         return super.getClient(ind2);
     }
-
 }

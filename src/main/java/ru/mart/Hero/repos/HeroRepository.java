@@ -17,6 +17,8 @@ public interface HeroRepository extends JpaRepository<Hero,Long> {
     @Query("FROM Hero h where h.name = ?1 order by h.id LIMIT 1")
     Hero findIdByFirstname(String firstname);
 
-    @Procedure("GET_TOTAL_HEROES")//@Query(value = "CALL GET_TOTAL_HEROES(:model)", nativeQuery = true)//
+    @Procedure("GET_TOTAL_HEROES")
+    //@Query(value = "CALL GET_TOTAL_HEROES(:model)", nativeQuery = true)
     int getTotalHeroes(@Param("input") String model);
+
 }

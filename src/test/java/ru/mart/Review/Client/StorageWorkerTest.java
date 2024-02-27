@@ -5,13 +5,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.mart.Review.ClientStorage.ClientsStorage;
+import ru.mart.Review.ClientStorage.StorageFactory;
 
 @SpringBootTest
 public class StorageWorkerTest {
     ClientsStorage clientsStorage;
     @BeforeEach
     void init(){
-        //clientsStorage = new ClientsStorage(5);
+        clientsStorage = StorageFactory.getInstance().createObject(5);
         clientsStorage.getClient(3);
     }
     @Test

@@ -1,6 +1,6 @@
 package ru.mart.Practice.Annotations.Custom;
 
-@CustomAnnotation("13")
+@CustomAnnotation(value = "13",miles = 4)
 public class CustomClass {
     int i = 5;
     int match(){

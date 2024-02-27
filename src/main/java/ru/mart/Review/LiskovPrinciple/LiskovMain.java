@@ -14,7 +14,7 @@ public class LiskovMain {
         //Неправильный вариант
         incorrectExample();
         //Соблюдение принципа
-        correctExample();
+        //correctExample();
     }
 
     private static void correctExample() {

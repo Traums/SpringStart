@@ -34,4 +34,5 @@ public class StorageFactory {
     private <T> T create(Class<T> implClass) throws InstantiationException, IllegalAccessException, java.lang.reflect.InvocationTargetException, NoSuchMethodException {
         return implClass.getDeclaredConstructor().newInstance();
     }
+
 }

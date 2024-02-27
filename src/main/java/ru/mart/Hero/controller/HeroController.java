@@ -4,7 +4,9 @@ package ru.mart.Hero.controller;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.persistence.LockModeType;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.http.HttpStatus;
@@ -12,19 +14,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import ru.mart.Hero.DatabaseService.DatabaseService;
+import ru.mart.Hero.domain.Hero;
 import ru.mart.Hero.dto.HeroDTO;
 import ru.mart.Hero.mapping.MapperHero;
 import ru.mart.Hero.repos.HeroRepository;
 import ru.mart.Hero.response.BadResponse;
 import ru.mart.Hero.response.GoodResponse;
-import ru.mart.Hero.DatabaseService.DatabaseService;
-import org.springframework.web.bind.annotation.*;
-import org.json.JSONObject;
-import ru.mart.Hero.domain.Hero;
 import ru.mart.Hero.util.Validation;
-import jakarta.validation.Valid;
 
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 @Slf4j
@@ -32,10 +31,11 @@ import java.util.List;
 @RequestMapping("/api/hero")
 @Validated
 @Api("Api для работы с сущностью Hero")
-//4.11.10 Расскажите о использовании аннотаций и их параметрах @RequestMapping, @RequestBody, @PathVariable, @RequestParam, @ExceptionHandler
+//4.11.10 Расскажите о использовании аннотаций и их параметрах @RequestMapping, @RequestBody, @PathVariable, @RequestParam,
 public class HeroController {
     List<ObjectError> errorMap = new ArrayList<>();
     private final DatabaseService service;
+    //2.5 D - Dependency Inversion Principle (Критический взгляд на DIP)
     @Autowired
     HeroRepository heroRepository;
     @Autowired

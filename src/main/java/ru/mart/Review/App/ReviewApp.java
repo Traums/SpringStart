@@ -50,7 +50,7 @@ public class ReviewApp {
     };
     MyPredicate<Integer> predicate = x-> x > 5;
     MyConsumer<Integer> consumer = System.out::println;
-    MyFunction<Integer,Integer> function = Integer::valueOf;
+    MyFunction<Integer,Integer> function = (x)-> Integer.valueOf(x.toString());
     MySupplier<Client> supplier = () -> {
         new Client();
         return Client.builder()
@@ -61,7 +61,8 @@ public class ReviewApp {
                 .build();
     };
     UnaryOperator<Integer> unaryOperator = x -> x * x;
-    BinaryOperator<Integer> binaryOperator = (x,y)->x * y;
+    BinaryOperator<Integer> binaryOperator = (x,y)-> x * y;
+
 
     public void run() {
         //demoCalculate();//4.3.2 Собственное исключение
@@ -73,7 +74,7 @@ public class ReviewApp {
         //demoNonCapture(); //4.5.5 Non/capture lambda чем отличаются?
         //readFileAsStream(); //4.6.2 Stream. Способы создания потока строк и потока из файла
         //demoCollectors();// 4.6.5 Stream. Конверсия  Collectors в список, множество, карту, коллекцию
-        demoStreamCollect();// 4.6.6 Stream. Операторы collect()
+        //demoStreamCollect();// 4.6.6 Stream. Операторы collect()
         demoReduce(); // 4.6.7 Stream. Операторы reduce()
         // | 4.6.8 Stream. Операторы поиска
         // | 4.6.9 Stream. Оператор sorted()
@@ -145,6 +146,7 @@ public class ReviewApp {
                 System.out.println("Found 3");
             }
         });
+
     }
     void demoNonCapture(){
         int[] numbers = {1,2,3,4,5};
@@ -278,7 +280,22 @@ public class ReviewApp {
         // 1*10 + 2*10 + 3*10
         Integer sum = numbers.stream().parallel()
                 .reduce(10, (identity, val) -> identity * val, Integer::sum);
-
+        String all = numbers.stream().reduce("",(x,y)->x.toString() + y.toString(),(x,y)->x.toString()+"," + y.toString());
+        System.out.println(all);
         System.out.println(sum); //output 60
+
+        int c = 4;
+        Integer b = c;
+
+    }
+
+    public static void main(String[] args) {
+        ArrayList<String> names = new ArrayList<>();
+        names.add("John");
+        names.add("Boris");
+        names.add("Vasya");
+
+        names.stream().map(s -> s.substring(1)).forEach(System.out::println);
+
     }
 }
